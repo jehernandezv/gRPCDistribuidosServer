@@ -28,15 +28,14 @@
 
           <div class="row">
                <div class="col-md-12 text-center">
-                    <h1 class="display-3 text-center">¡Adivina el numero!</h1>
-
+                    <h1 class="display-3 text-center">¡Adivina el numero entre 1 al 100!</h1>
+                     <p><%= response_server %></p>
                     <form action="/sendNumber" , method="POST">
                          <div class="row justify-content-center">
                               <div class="col-md-4">
                                    <div class="form-group">
                                         <input type="number" name="number" class="form-control" i
                                              placeholder="Ingresa tu numero">
-
                                    </div>
                               </div>
                          </div>

@@ -1,20 +1,20 @@
 syntax = "proto3";
 
-package helloworld;
+package guessNumber;
 
 // The greeting service definition.
 service Greeter {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc ValidateNumber (NumRequest) returns (NumReply) {}
 }
 
 // The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+message NumRequest {
+  string num = 1;
   string port = 2;
 }
 
 // The response message containing the greetings
-message HelloReply {
+message NumReply {
   string message = 1;
 }
