@@ -16,7 +16,7 @@
  *
  */
 
-var PROTO_PATH = __dirname + '/../../protos/helloworld.proto';
+var PROTO_PATH = __dirname + '/protos/helloworld.proto';
 
 var grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
@@ -35,7 +35,8 @@ var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
  */
 function sayHello(call, callback) {
   callback(null, {message: 'Hello ' + call.request.name});
-  console.log('He recibido la peticion');
+  console.log('He recibido el numero' + call.request.name);
+  console.log('Cliente: ' + call.request.port);
 }
 
 /**
