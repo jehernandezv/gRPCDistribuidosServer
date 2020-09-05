@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const port = 3000;
+const port = process.argv[3];
 
 var PROTO_PATH = __dirname + '/protos/helloworld.proto';
 
@@ -30,19 +30,22 @@ app.get('/', (req, res)=>{
 
 
 app.post('/sendNumber', (req, res)=>{
-  main();
+  sendNumber(req.body.number);
+  console.log("Number: " + req.body.number);
   res.redirect('/');
 });
 
-function main() {
+function sendNumber(number) {
   var client = new hello_proto.Greeter('localhost:50051', grpc.credentials.createInsecure());
   var user;
+  var portClient;
   if (process.argv.length >= 3) {
-    user = process.argv[2];
+    user = number;
+    portClient = port;
   } else {
     user = 'world';
   }
-  client.sayHello({name: user}, function(err, response) {
+  client.sayHello({name: user, port: portClient}, function(err, response) {
     console.log('Greeting:', response.message);
   });
 }
