@@ -2,7 +2,7 @@
   "name": "grpc-examples",
   "version": "0.1.0",
   "description": "",
-  "main": "./greeter_client.js",
+  "main": "./client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack-dev-server",
