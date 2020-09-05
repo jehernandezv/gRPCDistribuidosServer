@@ -1,0 +1,28 @@
+{
+  "name": "grpc-examples",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./greeter_client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack-dev-server",
+    "bundle": "npx webpack -d"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.1.0",
+    "async": "^1.5.2",
+    "google-protobuf": "^3.0.0",
+    "grpc": "^1.11.0",
+    "lodash": "^4.6.1",
+    "minimist": "^1.2.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "css-loader": "^3.6.0",
+    "style-loader": "^1.2.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
