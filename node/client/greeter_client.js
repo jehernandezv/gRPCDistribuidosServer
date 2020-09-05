@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const port = 3000;
 
+var PROTO_PATH = __dirname + '/protos/helloworld.proto';
 
 var grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
