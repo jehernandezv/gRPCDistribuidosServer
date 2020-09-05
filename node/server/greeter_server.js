@@ -35,6 +35,7 @@ var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
  */
 function sayHello(call, callback) {
   callback(null, {message: 'Hello ' + call.request.name});
+  console.log('He recibido la peticion');
 }
 
 /**

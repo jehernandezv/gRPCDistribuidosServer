@@ -1,7 +1,7 @@
 {
   "name": "grpc-examples",
   "version": "0.1.0",
-  "description": "",
+  "description": "gRPC in 3 minutes (Node.js)\r ===========================",
   "main": "./client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,20 +9,27 @@
     "bundle": "npx webpack -d"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "@grpc/proto-loader": "^0.1.0",
     "async": "^1.5.2",
+    "body-parser": "^1.19.0",
     "google-protobuf": "^3.0.0",
     "grpc": "^1.11.0",
+    "html-webpack-plugin": "^4.3.0",
     "lodash": "^4.6.1",
     "minimist": "^1.2.0",
-    "@fortawesome/fontawesome-free": "^5.14.0",
-    "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.43.0"
   },
   "devDependencies": {
     "css-loader": "^3.6.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
     "style-loader": "^1.2.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
