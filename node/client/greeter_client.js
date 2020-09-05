@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const port = process.argv[3];
+const port = process.argv[2];
 var response_server = '';
 
 var PROTO_PATH = __dirname + '/protos/guessNumber.proto';
@@ -10,14 +10,8 @@ var PROTO_PATH = __dirname + '/protos/guessNumber.proto';
 var grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
 var packageDefinition = protoLoader.loadSync(
-    PROTO_PATH,
-    {keepCase: true,
-     longs: String,
-     enums: String,
-     defaults: true,
-     oneofs: true
-    });
-var hello_proto = grpc.loadPackageDefinition(packageDefinition).guessNumber;
+    PROTO_PATH,{});
+var number_proto = grpc.loadPackageDefinition(packageDefinition).guessNumber;
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -36,7 +30,7 @@ app.post('/sendNumber', (req, res)=>{
 });
 
 function sendNumber(number, res) {
-  var client = new hello_proto.Greeter('localhost:50051', grpc.credentials.createInsecure());
+  var client = new number_proto.Greeter('localhost:50051', grpc.credentials.createInsecure());
   var num = number;
   var portClient = port;
   client.ValidateNumber({num: num, port: portClient}, function(err, response) {

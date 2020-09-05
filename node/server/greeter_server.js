@@ -4,7 +4,7 @@ var grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
 var packageDefinition = protoLoader.loadSync(
     PROTO_PATH,{});
-var hello_proto = grpc.loadPackageDefinition(packageDefinition).guessNumber;
+var number_proto = grpc.loadPackageDefinition(packageDefinition).guessNumber;
 //Num random entre 1 y 100
 var numRandom = Math.round(Math.random()*(100-1)+1);
 console.log('Numero aleatorio: ' + numRandom);
@@ -37,7 +37,7 @@ function validateNumber(call, callback) {
  */
 function main() {
   var server = new grpc.Server();
-  server.addService(hello_proto.Greeter.service, {validateNumber: validateNumber});
+  server.addService(number_proto.Greeter.service, {validateNumber: validateNumber});
   server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
   server.start();
 }
