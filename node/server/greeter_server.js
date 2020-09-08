@@ -1,15 +1,22 @@
+// Ruta de archivo proto
 var PROTO_PATH = __dirname + '/protos/guessNumber.proto';
 
+// Importación de paquetes grpc
 var grpc = require('grpc');
 var protoLoader = require('@grpc/proto-loader');
+const port = process.argv[2];
+
+//Descriptores de servicios
 var packageDefinition = protoLoader.loadSync(
     PROTO_PATH,{});
 var number_proto = grpc.loadPackageDefinition(packageDefinition).guessNumber;
+
 //Num random entre 1 y 100
 var numRandom = Math.round(Math.random()*(100-1)+1);
 console.log('Numero aleatorio: ' + numRandom);
+
 /**
- * Implements the validateNumber RPC method.
+ * Implementa un método RPC encargado de validar un número
  */
 function validateNumber(call, callback) {
   var numClient = call.request.num;
@@ -26,24 +33,29 @@ function validateNumber(call, callback) {
         response = '¡FELICIDADES, HA GANADO! EL NÚMERO GANADOR FUE ' + numRandom;
         status = 'success';
       }
-}else{
-  response = 'Debe ingresar un número';
-}
+  }else{
+    response = 'Debe ingresar un número';
+  }
 
+  //Devolución de llamada con primer parámetro nulo para indicar que no hay error
   callback(null, {message: response, status: status});
   console.log('He recibido el numero: ' + call.request.num);
   console.log('Cliente: ' + call.request.port);
 }
 
 /**
- * Starts an RPC server that receives requests for the Greeter service at the
- * sample server port
+ * Inicia un servidor RPC que recibe las solicitudes para el servicio de validación de números
  */
 function main() {
+  // Se crea el servidor de acuerdo al descriptor de servicio
   var server = new grpc.Server();
+  // Agrega el servicio de validación del número
   server.addService(number_proto.Greeter.service, {validateNumber: validateNumber});
-  server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
+  // Se especifica la dirección y el puerto para escuchar las solicitudes de los clientes
+  server.bind('0.0.0.0:'+port, grpc.ServerCredentials.createInsecure());
+  // Inicia el servidor RPC
   server.start();
 }
 
+// Llamado de inicialización del servicio
 main();
