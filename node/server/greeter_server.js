@@ -14,19 +14,23 @@ console.log('Numero aleatorio: ' + numRandom);
 function validateNumber(call, callback) {
   var numClient = call.request.num;
   var response = '';
+  var status = '';
   if(numClient){
       if(numRandom > numClient){
-        response = 'el numero debe ser mayor a: ' + numClient;
+        response = 'El número debe ser mayor a ' + numClient;
+        status = 'info';
       }else if(numRandom < numClient){
-        response = 'el numero debe ser menor a: ' + numClient;
+        response = 'El número debe ser menor a ' + numClient;
+        status = 'danger';
       }else{
-        response = 'Felicidades ha ganado el numero era : ' + numRandom;
+        response = '¡FELICIDADES, HA GANADO! EL NÚMERO GANADOR FUE ' + numRandom;
+        status = 'success';
       }
 }else{
   response = 'Debe ingresar un número';
 }
 
-  callback(null, {message: response});
+  callback(null, {message: response, status: status});
   console.log('He recibido el numero: ' + call.request.num);
   console.log('Cliente: ' + call.request.port);
 }

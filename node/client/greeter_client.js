@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const port = process.argv[2];
 var response_server = '';
+var response_status = '';
 
 var PROTO_PATH = __dirname + '/protos/guessNumber.proto';
 
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res)=>{
-  res.render('index',{response_server});
+  res.render('index',{response_server, response_status});
 });
 
 
@@ -36,8 +37,10 @@ function sendNumber(number, res) {
   client.ValidateNumber({num: num, port: portClient}, function(err, response) {
     console.log('recibe del server:', response.message);
     response_server = response.message;
+    response_status = response.status;
+    console.log('El estado que llega es: ' +response.status);
     res.redirect('/');
   });
 }
 
-app.listen(port, () => console.log(`Servidor escuchando en puerto ${port}`));
+app.listen(port, () => console.log(`Cliente escuchando en puerto ${port}`));

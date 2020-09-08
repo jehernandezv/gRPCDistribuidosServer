@@ -13,7 +13,7 @@
      <!-- Image and text -->
      <nav class="navbar navbar-dark bg-dark">
           <a class="navbar-brand ml-4" href="#">
-               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png"
+               <img src="https://desafiolatam.com/assets/videojuegos-icon-d563975546a5759e092cd5a49f746098402008f440d6ec64d39a4309b0e02f50.png"
                     width="30" height="30" class="d-inline-block align-top mr-2" alt="">
                gRPC
           </a>
@@ -28,8 +28,8 @@
 
           <div class="row">
                <div class="col-md-12 text-center">
-                    <h1 class="display-3 text-center">¡Adivina el numero entre 1 al 100!</h1>
-                     <p><%= response_server %></p>
+                    <h1 class="display-3 text-center">¡Adivina un número entre 1 al 100!</h1>
+                     <p class="text-<%=response_status%>"> <%= response_server %></p>
                     <form action="/sendNumber" , method="POST">
                          <div class="row justify-content-center">
                               <div class="col-md-4">
